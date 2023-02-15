@@ -1,0 +1,173 @@
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "AlbertSan";
+}
+
+.container-fluid {
+    background-color: greenyellow;
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.navbar-nav > a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    font-size: 11px;
+    width: 100px;
+    height: 30px;
+    background-color: yellowgreen;
+    color: #d90368;
+    margin: 5px 10px 10px;
+    border: 2px solid gray;
+    box-shadow: 6px 5px  yellowgreen;
+}
+
+
+.container-title {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    background-color: blueviolet;
+}
+
+
+.container-title > h1 {
+    color: white;
+    font-size: 50px;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.container-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    margin-top: 20px;
+}
+
+
+form label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px
+}
+form .checkbox label {
+    width: unset;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+form .checkbox label .search {
+background-color: #d90368;
+}
+
+div .card {
+    font-size: 10px;
+    height: 300px;
+    padding: 5px;
+    margin: 30px;
+    align-items: center;
+    border: 1px solid gray;
+    font-size: 10px
+}
+
+.card img {
+    margin-top: 20px;
+    object-fit: cover;
+}
+.card-body {
+    padding: 50px;
+}
+.card-body h2 {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.card-body h5 {
+    font-size: 18px;
+}
+
+.card-body span {
+    font-size: 15px;
+    font-weight: bold
+}
+
+form {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.card-body span, a {
+    margin: 15px;
+    
+}
+
+footer {
+    margin-top: 10px ;
+}
+
+footer > .container-footer1 {
+    background-color: #d90368;
+
+}
+
+tbody {
+    padding: 0px;
+    margin: 50px;
+
+}
+
+#event {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#event > .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+  
+  caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: center;
+  }
+  
+  th {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
