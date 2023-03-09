@@ -277,8 +277,6 @@ footer > .container-footer1 {
     #text-details > h3 {
         display: flex;
         justify-content: center;
-        padding-bottom: px !important;
-        margin-top: 0px;
     }
     #text-details > p {
         display: flex; 
@@ -350,14 +348,12 @@ footer > .container-footer1 {
     #text-details > h3 {
         display: flex;
         justify-content: center;
-        padding-bottom: 20px !important;
-        margin-top: 0px;
     }
     #text-details > p {
         display: flex; 
         margin-top: -60px; 
     }
-    #text-details #descriptive  {
+    #text-details #descriptive {
         display: inline-block;
         line-height: 20px;
     }
