@@ -1,3 +1,6 @@
+let data = localStorage.getItem("data")
+data = JSON.parse(data)
+
 const generateCard = (event) => `
   <div class="card" style="width: 16rem; height: 22rem;">
     <div class="card-body">
@@ -13,13 +16,12 @@ const generateCard = (event) => `
 const cardContainer = document.getElementById("card");
 const currentDate = new Date(data.currentDate);
 
-const htmlEvents = data.events
-  .filter(event => new Date(event.date) <  currentDate)
-  .map(event => generateCard(event))
-  .join("");
+const filteredEvents = data.events.filter(event => new Date(event.date) > currentDate);
+
+const htmlEvents = filteredEvents.map(event => generateCard(event)).join("");
 cardContainer.innerHTML = htmlEvents;
 
-const categories = [...new Set(data.events.map(event => event.category))];
+const categories = [...new Set(filteredEvents.map(event => event.category))];
 
 const newCheckbox = (category) => `
   <div class="form-check form-check-inline">
@@ -39,16 +41,18 @@ categoryCheckboxes.forEach(checkbox => {
     const categories = [...categoryCheckboxes]
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
-    
-let HTMLresults = "";
-const filteredEvents = data.events.filter(event => 
-  categories.includes(event.category) && new Date(event.date) < currentDate);
-  if (filteredEvents.length > 0) {
-    HTMLresults = filteredEvents.map(event => generateCard({...event})).join("");
-  } else {
-    HTMLresults = "<p>No events found for the selected categories</p>";
-  }
-  cardContainer.innerHTML = HTMLresults;
+      let HTMLresults = "";
+      if (categories.length === 0) {
+        HTMLresults = filteredEvents.map(event => generateCard(event)).join("");
+      } else {
+        const filteredByCategory = filteredEvents.filter(event => categories.includes(event.category));
+        if (filteredByCategory.length > 0) {
+          HTMLresults = filteredByCategory.map(event => generateCard(event)).join("");
+        } else {
+          HTMLresults = "<p>No events found for the selected categories</p>";
+        }
+      }
+      cardContainer.innerHTML = HTMLresults;
   });
 });
 
@@ -61,14 +65,14 @@ const inputSearch = document.getElementById("search");
 document.querySelector("#form-search").addEventListener("submit", (e) => {
   e.preventDefault();
   
-const textIn = inputSearch.value.toLowerCase();
-const results = data.events.filter(event => 
-  event.name.toLowerCase().includes(textIn) ||
-  event.description.toLowerCase().includes(textIn) && new Date(event.date) < currentDate);
+  const textIn = inputSearch.value.toLowerCase();
+  const results = filteredEvents.filter(event => 
+    event.name.toLowerCase().includes(textIn) ||
+    event.description.toLowerCase().includes(textIn));
 
-let HTMLresults = "";
+  let HTMLresults = "";
   if (results.length > 0) {
-    HTMLresults = results.map(event => generateCard({...event})).join("");
+    HTMLresults = results.map(event => generateCard(event)).join("");
   } else {
     HTMLresults = "<p>No events found for the selected categories</p>";
   }

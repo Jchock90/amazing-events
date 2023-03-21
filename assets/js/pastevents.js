@@ -1,3 +1,6 @@
+let data = localStorage.getItem("data")
+data = JSON.parse(data)
+
 const generateCard = (event) => `
   <div class="card" style="width: 16rem; height: 22rem;">
     <div class="card-body">
@@ -14,7 +17,7 @@ const cardContainer = document.getElementById("card");
 const currentDate = new Date(data.currentDate);
 
 const htmlEvents = data.events
-  .filter(event => new Date(event.date) > currentDate)
+  .filter(event => new Date(event.date) < currentDate)
   .map(event => generateCard(event))
   .join("");
 cardContainer.innerHTML = htmlEvents;
@@ -39,16 +42,19 @@ categoryCheckboxes.forEach(checkbox => {
     const categories = [...categoryCheckboxes]
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
-    
-let HTMLresults = "";
-const filteredEvents = data.events.filter(event => 
-  categories.includes(event.category) && new Date(event.date) > currentDate);
-  if (filteredEvents.length > 0) {
-    HTMLresults = filteredEvents.map(event => generateCard({...event})).join("");
-  } else {
-    HTMLresults = "<p>No events found for the selected categories</p>";
-  }
-  cardContainer.innerHTML = HTMLresults;
+      let HTMLresults = "";
+      if (categories.length === 0) {
+        const filteredEvents = data.events.filter(event => new Date(event.date) < currentDate);
+        HTMLresults = filteredEvents.map(event => generateCard({...event})).join("");
+      } else {
+        const filteredEvents = data.events.filter(event => categories.includes(event.category) && new Date(event.date) < currentDate);
+        if (filteredEvents.length > 0) {
+          HTMLresults = filteredEvents.map(event => generateCard({...event})).join("");
+        } else {
+          HTMLresults = "<p>No events found for the selected categories</p>";
+        }
+      }
+      cardContainer.innerHTML = HTMLresults;
   });
 });
 
@@ -61,12 +67,17 @@ const inputSearch = document.getElementById("search");
 document.querySelector("#form-search").addEventListener("submit", (e) => {
   e.preventDefault();
   
-const textIn = inputSearch.value.toLowerCase();
-const results = data.events.filter(event => 
-  event.name.toLowerCase().includes(textIn) ||
-  event.description.toLowerCase().includes(textIn) && new Date(event.date) > currentDate);
+  const textIn = inputSearch.value.toLowerCase();
+  let results = [];
+  if (textIn.length === 0) {
+    results = data.events.filter(event => new Date(event.date) < currentDate);
+  } else {
+    results = data.events.filter(event => 
+      event.name.toLowerCase().includes(textIn) ||
+      event.description.toLowerCase().includes(textIn) && new Date(event.date) < currentDate);
+  }
 
-let HTMLresults = "";
+  let HTMLresults = "";
   if (results.length > 0) {
     HTMLresults = results.map(event => generateCard({...event})).join("");
   } else {

@@ -43,23 +43,23 @@
     <div>
         <div class="container">
           <table class="table-responsive table-bordered">
-            <thead>
-              <tr>
+              <thead>
+                <tr>
                 <th class="text-center" colspan="3"><h5>Event statistics</h5></th>
-              </tr>
-              <tr class="events">
-                <th class="text-center" scope="col">Events with the highest percentage of attendance</th>
-                <th class="text-center" scope="col">Events with the lowest percentage of attendance</th>
-                <th class="text-center" scope="col">Events with the largest capacity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Value</td>
-                <td>Value</td>
-                <td>Value</td>
-              </tr>
-            </tbody>
+                </tr>
+                <tr class="events">
+                  <th class="text-center" scope="col">Event with the highest percentage of attendance</th>
+                  <th class="text-center" scope="col">Event with the lowest percentage of attendance</th>
+                  <th class="text-center" scope="col">Event with the largest capacity</th>
+                </tr>
+              </thead>
+              <tbody id="statistics">
+                <tr>
+                  <td id="highest-attendance"></td>
+                  <td id="lowest-attendance"></td>
+                  <td id="largest-capacity"></td>
+                </tr>
+              </tbody>     
               <thead>
                 <tr>
                   <th class="text-center" colspan="3"><h5>Upcoming event statistics by categories</h5></th>
@@ -70,12 +70,7 @@
                   <th class="text-center" scope="col">Percentage of attendance</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Value</td>
-                  <td>Value</td>
-                  <td>Value</td>
-                </tr>
+              <tbody id="upcomingevents">
               </tbody>
               <thead>
                 <tr>
@@ -87,12 +82,7 @@
                   <th class="text-center" scope="col">Percentage of attendance</th>
                  </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Value</td>
-                  <td>Value</td>
-                  <td>Value</td>
-                </tr>
+              <tbody id="pastevents">
               </tbody>
           </table>
         </div>

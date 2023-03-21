@@ -1,3 +1,6 @@
+let data = localStorage.getItem("data")
+data = JSON.parse(data)
+ 
 const generateCard = (event) => `
   <div class="card" style="width: 16rem; height: 22rem;">
     <div class="card-body">
@@ -39,17 +42,21 @@ categoryCheckboxes.forEach(checkbox => {
     const categories = [...categoryCheckboxes]
       .filter(checkbox => checkbox.checked)
       .map(checkbox => checkbox.value);
-    
-let HTMLresults = "";
-const filteredEvents = data.events.filter(event => categories.includes(event.category));
-  if (filteredEvents.length > 0) {
-    HTMLresults = filteredEvents.map(event => generateCard({...event})).join("");
-  } else {
-    HTMLresults = "<p>No events found for the selected categories</p>";
-  }
-  cardContainer.innerHTML = HTMLresults;
-  });
-});
+      let HTMLresults = "";
+      const filteredEvents = data.events.filter(event => categories.includes(event.category));
+        if (categories.length === 0) {
+          HTMLresults = data.events.map(event => generateCard({...event})).join("");
+        } else {
+          const filteredEvents = data.events.filter(event => categories.includes(event.category));
+          if (filteredEvents.length > 0) {
+            HTMLresults = filteredEvents.map(event => generateCard({...event})).join("");
+          } else {
+            HTMLresults = "<p>No events found for the selected categories</p>";
+          }
+        }
+        cardContainer.innerHTML = HTMLresults;
+        });
+      });
 
 const form = document.querySelector("#search");
   form.addEventListener("submit", (event) => {
@@ -74,4 +81,6 @@ let HTMLresults = "";
   }
 cardContainer.innerHTML = HTMLresults;
 });
+
+
 
